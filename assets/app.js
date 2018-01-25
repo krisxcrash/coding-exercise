@@ -56,12 +56,52 @@
 
 // getComments(1, 'comments', queryURL)
 
-// console.log(`Bret has ${numberOfPosts} posts, ${numberOfAlbums} albums, and ${numberOfToDos} todos`)
 
-const url = 'https://jsonplaceholder.typicode.com' + '/posts/1/comments?PostId=5';
 
-fetch(url)
-  .then((resp) => resp.json()) // Transform the data into json
+const url = 'https://jsonplaceholder.typicode.com';
+let posts = [];
+let post = 0;
+let numberOfPosts = 0;
+let numberOfAlbums = 0;
+let numberOfToDos = 0;
+
+const postURL = url + '/posts?userId=1';
+
+const postFetch = fetch(postURL)
+  .then((resp) => resp.json()) 
   .then(function(data) {
-    console.log(data);
+
+    for (let i = 0; i < 5; i++) {
+        const postData = data[i];
+        numberOfPosts++;
+        console.log(`Post ${numberOfPosts}: ${postData.title}`);
+    }
 });
+
+const albumsURL = url + '/albums?userId=1';
+
+const albumsFetch = fetch(albumsURL)
+  .then((resp) => resp.json()) 
+  .then(function(data) {
+    numberOfAlbums = data.length;
+    // console.log(numberOfAlbums);
+});
+
+const todosURL = url + '/todos?userId=1';
+
+const todosFetch = fetch(todosURL)
+  .then((resp) => resp.json())
+  .then(function(data) {
+    // console.log(data);
+});
+
+const commentsURL = url + '/posts/1/comments?PostId=5';
+
+const commentsFetch = fetch(commentsURL)
+  .then((resp) => resp.json())
+  .then(function(data) {
+    console.log(`Viewing post ${'"nesciunt quas odio"'} which has ${data.length} comments`)
+});
+
+
+console.log(`Bret has ${numberOfPosts} posts, ${numberOfAlbums} albums, and ${numberOfToDos} todos`)
