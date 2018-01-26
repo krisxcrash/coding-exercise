@@ -92,8 +92,11 @@ const todosURL = url + '/todos?userId=1';
 const todosFetch = fetch(todosURL)
   .then((resp) => resp.json())
   .then(function(data) {
-    // console.log(data);
+    //  return data;
+    // console.log(data.length);
+    
 });
+
 
 const commentsURL = url + '/posts/1/comments?PostId=5';
 
@@ -104,4 +107,5 @@ const commentsFetch = fetch(commentsURL)
 });
 
 
-console.log(`Bret has ${numberOfPosts} posts, ${numberOfAlbums} albums, and ${numberOfToDos} todos`)
+console.log(`Bret has ${numberOfPosts} posts, ${numberOfAlbums} albums, and ${todosFetch} todos`)
+
